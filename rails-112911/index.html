@@ -164,7 +164,39 @@
         </h2>
       </article>
 
-      <!-- Insert Performance slides -->
+      <article>
+        <h3>Find your Bottlenecks</h3>
+      </article>
+
+      <article>
+        <h3>Caching</h3>
+      </article>
+
+      <article>
+        <h3>Rails Performance Tips</h3>
+        <ul>
+          <li>
+            Eagerly load associations
+            <pre>
+              // Do this
+            </pre>  
+          </li>
+          <li>
+            Include as much asynchrony as possible (<code>DelayedJob</code>/<code>BackgroundJob</code>)
+          </li>
+          <li>
+            Template inlining
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Other (general) perforamnce Tips</h3>
+        <ul>
+          <li>Minify <code>js</code> and <code>css</code></li>
+          <li>Sprites</li>
+        </ul>
+      </article>
 
       <article>
         <h2>
@@ -172,7 +204,29 @@
         </h2>
       </article>
 
-      <!-- Insert Security slides -->
+      <article>
+        <q>Whitelist, don't blacklist.</q>
+      </article>
+
+      <article>
+        <h3>Session Hijacking</h3>
+      </article>
+
+      <article>
+        <h3>Cross-site Request Forgery (CSRF)</h3>
+      </article>
+
+      <article>
+        <h3>Cross-site Scripting (XSS)</h3>
+      </article>
+
+      <article>
+        <h3>SQL Injection</h3>
+      </article>
+
+      <article>
+        <h3>Password Hashing/Salting</h3>
+      </article>
 
       <article>
         <h2>
@@ -185,9 +239,11 @@
           Rails Must-Haves
         </h3>
         <ul>
-          <li>
-            (fill in)
-          </li>
+          <li>Authentication (<code>restful_authentication</code>, <code>authlogic</code>)</li>
+          <li>Emailing (<code>ActionMailer</code>)</li>
+          <li>File uploads (<code>paperclip</code>, <code>attachment_fu</code>)</li>
+          <li>Exception Notification (<code>exception_notification</code>, Hoptoad)</li>
+          <!--<li>What_column</li>-->
         </ul>
       </article>
 
@@ -197,8 +253,11 @@
         </h3>
         <ul>
           <li>
-            (fill in)
+            Heroku
           </li>
+          <li>
+            Capistrano
+          </li>  
         </ul>
       </article>
 
