@@ -43,7 +43,26 @@
         </h3>
         <ul>
           <li>
-            (fill in)
+            Amber Feng
+              <ul>
+                <li>4th year EECS major</li>
+                <li>Lots of web dev, startups, hacks, etc</li>
+                <li><a href="http://www.amberfeng.com">http://www.amberfeng.com</a></li>
+              </ul>
+          </li>
+          <li>
+            Jon Ko
+            <ul>
+              <li>4th year EECS major</li>
+              <li>...</li>
+            </ul>
+          </li>
+          <li>
+            <a href="http://www.webdesigndecal.com">Web Design Decal</a>
+          </li>
+          <li>
+            <a href="http://hkn.eecs.berkeley.edu">HKN Website</a> 
+          </li>
           </li>
         </ul>
       </article>
@@ -88,7 +107,54 @@
         </h3>
         <ul>
           <li>
-            (fill in)
+            Concatenating, compressing, minifying assets (<code>js</code>, <code>css</code>)
+              <ul>
+                <li>By default, concatenate all files into one master file for each type</li>
+                <li>
+                  Specify which compressor to use
+                  <pre>config.assets.css_compressor = :yui</pre>
+                  <pre>config.assets.js_compressor = :closure</pre>
+                  Note: The respective <code>yui-compressor</code> and <code>closure-compiler</code> gems need to be installed
+                </li>
+              </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Asset Pipeline (cont'd)</h3>
+        <ul>
+          <li>
+            Using Sass, Haml, CoffeeScript, etc.
+            <pre>
+$blue: #3bbfce
+$margin: 16px
+
+.content-navigation
+  color: darken($blue, 9%)
+  div
+    padding: $margin / 2</pre>
+
+          </li>
+          <li>Static files go in <code>public/</code> (as always), files to be pre-processed go in <code>app/assets/</code>
+          <li>When files are requested, ex. <code>app.js.coffee</code>, processed by the appropriate gem first (<code>coffee-script</code>), then sent to the browser as <code>js</code> file
+        </ul>
+      </article>
+
+      <article>
+        <h3>Asset Pipeline: Fingerprinting</h3>
+        <ul>
+          <li>
+            The old way: (timestamped)
+            <pre>/stylesheets/global.css?1309495796</pre> 
+          </li>
+          <li>
+            The new way:  (MD5 hash of file contents)
+            <pre>/stylesheets/global-908e25f4bf641868d8683022a5b62f54.css</pre>
+            <ul>
+              <li>Allow maximum caching</li>
+              <li>Better for multi-server environments where timestamps are not guaranteed to be the same</li>
+            </ul>
           </li>
         </ul>
       </article>
