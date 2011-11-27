@@ -337,7 +337,7 @@ end</pre>
 
       <article>
         <h3>Caching</h3>
-        Temporary storage of generated HTML pages to avoid requests from having to go through the (slower) Rails stack.
+        Temporary storage of generated HTML to (in some cases) bypass Rails processing
         <ul>
           <li>First:
             Enable caching
@@ -358,7 +358,7 @@ end</pre>
 
       <article>
         <h3>Caching: Page Caching</h3>
-        Allows page to be served by the webserver instead of going through the Rails stack.
+        Allows page to be served by the webserver instead of going through the Rails stack
         <ul>
           <li>Faster, but for "static" pages only, not for dynamic/authenticated content</li>
           <li>GET parameters ignored, won't work for pagination ex. <code>users.html?page=1</code> vs <code>users.html?page=2</code></li>
@@ -376,7 +376,7 @@ end
 
       <article>
         <h3>Caching: Action Caching</h3>
-        Request goes through the Rails stack first (ex. so filters can run), then cached copy is served.
+        Request goes through the Rails stack first (ex. so filters can run), then cached copy is served
         <ul>
           <li>Pass in a block via <code>if</code> or <code>unless</code> to specify when the action should be cached</li>
           <li>Use <code>:layout => false</code> to cache without the layout (which typically contains logged in user information, etc</li>
@@ -395,7 +395,7 @@ end
 
       <article>
         <h3>Caching: Fragment Caching</h3>
-        Fine-grained control over caching specific parts of a page.
+        Finer-grained control over caching specific parts of a page
 <pre>
 <%= @current_user.name if @current_user %>
 
@@ -443,28 +443,28 @@ end
       </article>
 
       <article>
-        <h3>Rails Performance Tips</h3>
-        <ul>
-          <li>
-            Eagerly load associations to minimize number of queries
-            <pre>
+        <h3>Perf Protip #1: Eager Loading</h3>
+        Eagerly load associations to minimize number of queries
+        <pre>
 users = User.includes(:photo).all
 users.each { |user| puts user.photo.url }
 </pre>  
-          </li>
-          <li>
-            Include as much asynchrony as possible (<code>DelayedJob</code>/<code>BackgroundJob</code>)
-          </li>
-          <li>
-            Template inlining
-          </li>
-          <li>
-            SQL Caching
-              <ul>
-                <li>Rails does this already, within actions</li>
-              </ul>
-          </li>
+  
+        (fill in)
+      </article>
+      
+      <article>
+        <h3>Perf Protip #2: Asynchrony</h3>
+        Include as much asynchrony (is this even a real word?) as possible 
+        <ul>
+          <li>Send a response back ASAP, let long running jobs (ex. file uploading, sending emails) run in the background</li>
+          <li>(fill in)</li>
         </ul>
+      </article>
+
+      <article>
+        <h3>Perf Protip #3: Template Inlining</h3>
+        (fill in)
       </article>
 
       <article class="segue">
@@ -479,18 +479,22 @@ users.each { |user| puts user.photo.url }
 
       <article>
         <h3>Session Hijacking</h3>
+        (fill in)
       </article>
 
       <article>
         <h3>Cross-site Request Forgery (CSRF)</h3>
+        (fill in)
       </article>
 
       <article>
         <h3>Cross-site Scripting (XSS)</h3>
+        (fill in)
       </article>
 
       <article>
         <h3>SQL Injection</h3>
+        (fill in)
       </article>
 
       <article class="segue">
@@ -504,10 +508,10 @@ users.each { |user| puts user.photo.url }
           Rails Must-Haves
         </h3>
         <ul>
-          <li>Authentication (<code>restful_authentication</code>, <code>authlogic</code>)</li>
-          <li>Emailing (<code>ActionMailer</code>)</li>
-          <li>File uploads (<code>paperclip</code>, <code>attachment_fu</code>)</li>
-          <li>Exception Notification (<code>exception_notification</code>, Hoptoad)</li>
+          <li>Authentication (<code><a href="https://github.com/technoweenie/restful-authentication">restful_authentication</a></code>, <code><a href="https://github.com/binarylogic/authlogic">authlogic</a></code>)</li>
+          <li>Emailing (<code><a href="http://guides.rubyonrails.org/action_mailer_basics.html">ActionMailer</a></code>)</li>
+          <li>File Uploads (<code><a href="https://github.com/thoughtbot/paperclip">paperclip</a></code>, <code><a href="https://github.com/technoweenie/attachment_fu">attachment_fu</a></code>)</li>
+          <li>Exception Notification (<code><a href="https://github.com/rails/exception_notification">exception_notification</a></code>, <a href="http://airbrake.io/pages/home">Airbrake</a>)</li>
           <!--<li>What_column</li>-->
         </ul>
       </article>
@@ -518,10 +522,10 @@ users.each { |user| puts user.photo.url }
         </h3>
         <ul>
           <li>
-            Heroku
+            Heroku (fill in)
           </li>
           <li>
-            Capistrano
+            Capistrano (fill in)
           </li>  
         </ul>
       </article>
