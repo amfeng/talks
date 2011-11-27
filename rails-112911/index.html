@@ -34,8 +34,16 @@
     .right { float: right; }
     .inline { display: inline; }
 
-    .slides > article h4 {
+    h4 {
       margin-bottom: 0.2em;
+    }
+
+    .slides > article a {
+      color: #B52448;
+    }
+
+    .slides > article a:hover {
+      color: #333;
     }
 
     .slides > #cover, .slides > .segue {
@@ -84,30 +92,21 @@
         <h3>
           Introduction
         </h3>
-        <ul>
-          <li>
-            Amber Feng
-              <ul>
-                <li>4th year EECS major</li>
-                <li>Lots of web dev, startups, hacks, etc</li>
-                <li><a href="http://www.amberfeng.com">http://www.amberfeng.com</a></li>
-              </ul>
-          </li>
-          <li>
-            Jon Ko
-            <ul>
-              <li>4th year EECS major</li>
-              <li>...</li>
-            </ul>
-          </li>
-          <li>
-            <a href="http://www.webdesigndecal.com">Web Design Decal</a>
-          </li>
-          <li>
-            <a href="http://hkn.eecs.berkeley.edu">HKN Website</a> 
-          </li>
-          </li>
+
+        <h4><a href="http://www.amberfeng.com">Amber Feng</a></h4>
+        <ul style="margin-top: 0.2em;">
+          <li>4th year EECS major</li>
+          <li>Lots of web dev, startups, hacks, etc</li>
         </ul>
+
+        <h4>Jon Ko</h4>
+        <ul style="margin-top: 0.2em;">
+          <li>4th year EECS major</li>
+          <li>(fill in)</li>
+        </ul>
+
+        <p style="margin-top: 1.2em;">Together, we've worked on the <a href="http://www.webdesigndecal.com">Web Design Decal</a> and <a href="http://hkn.eecs.berkeley.edu">HKN</a> websites!</p> 
+
       </article>
 
       <article>
@@ -176,7 +175,7 @@ end
 
       <article>
         <h3>
-          Asset Pipeline
+          <a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a>
         </h3>
         <ul>
           <li>
@@ -252,7 +251,7 @@ $margin: 16px
       </article>
 
       <article>
-        <h3 data-url="http://guides.rubyonrails.org/active_record_querying.html"> ActiveRecord Query Interface </h3>
+        <h3><a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord Query Interface</a></h3>
 
         <ul>
           <li> Queries are chainable, like jQuery </li>
@@ -275,7 +274,7 @@ $margin: 16px
       </article>
 
       <article>
-        <h3> Routes </h3>
+        <h3><a href="http://guides.rubyonrails.org/routing.html">Routes</a></h3>
         <ul>
           <li> Map URL &rarr; controller, action
             <pre>match "/aUrl" =&gt; "a_controller#an_action"</pre>
