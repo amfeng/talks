@@ -16,6 +16,7 @@
   <head>
     <title>H@B Ruby on Rails Workshop 11/29/11 - Amber Feng and Jon Ko</title>
     <meta charset='utf-8'>
+    <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
     <script src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script type='text/javascript'>
@@ -33,8 +34,29 @@
     .right { float: right; }
     .inline { display: inline; }
 
-    h4 {
+    .slides > h4 {
       margin-bottom: 0.2em;
+    }
+
+    .slides > #cover, .slides > .segue {
+      background: #333;
+      color: #ddd;
+    }
+
+    .slides > #cover h1, .slides > .segue h2 {
+      color: #fff;
+      font-family: 'Abel', Helvetica, sans-serif;
+      text-transform: uppercase;
+    }
+
+    .slides > .segue h2 {
+      font-size: 2.2em;
+    }
+
+    .slides > article h3 {
+      font-size: 1.6em;
+      font-family: 'Abel', Helvetica, sans-serif;
+      text-transform: uppercase;
     }
   </style>
 
@@ -42,15 +64,20 @@
 
     <section class='slides layout-regular'>
         
-      <article>
-        <h1>
-          H@B Ruby on Rails Workshop
-        </h1>
-        <p>
-          Amber Feng and Jon Ko
-          <br>
-          November 29, 2011
-        </p>
+      <article id="cover">
+        <div style="margin-top: 200px; width: 200px; float: left;">
+          <img style="width: 100%" src="ruby.png">
+        </div>
+        <div style="margin-left: 220px;">
+          <h1>
+            H@B Ruby on Rails Workshop
+          </h1>
+          <p>
+            Amber Feng and Jon Ko
+            <br>
+            November 29, 2011
+          </p>
+        </div>
       </article>
       
       <article>
@@ -90,7 +117,7 @@
         <div>Web application framework, written in Ruby</div>
 
         <div class="left" style="margin-top: 1.6em; margin-right: 1em; width: 150px;">
-          <img style="width: 100%" src="http://blog.smalleycreative.com/wp-content/uploads/2011/01/rails-235x300.png">
+          <img style="width: 100%" src="rails.png">
         </div>
         <p>
           <h4>DRY - "Don't Repeat Yourself"</h4>
@@ -111,13 +138,13 @@
         </p>
       </article>
 
-      <article>
+      <article class="segue">
         <h2>
           Demo App - Facebook
         </h2>
       </article>
 
-       <article>
+       <article class="segue">
         <h2>
           Rails Internals
         </h2>
@@ -216,7 +243,7 @@ $margin: 16px
 
       <!-- Insert other magic-like Rails things, snippets of Rails source code? -->
 
-      <article>
+      <article class="segue">
         <h2>
           Best Practices
         </h2>
@@ -297,7 +324,7 @@ end</pre>
 
       <!-- Insert other Best Practices slides? -->
 
-      <article>
+      <article class="segue">
         <h2>
           Performance
         </h2>
@@ -439,7 +466,7 @@ users.each { |user| puts user.photo.url }
         </ul>
       </article>
 
-      <article>
+      <article class="segue">
         <h2>
           Security
         </h2>
@@ -465,7 +492,7 @@ users.each { |user| puts user.photo.url }
         <h3>SQL Injection</h3>
       </article>
 
-      <article>
+      <article class="segue">
         <h2>
           Practical Things
         </h2>
