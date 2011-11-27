@@ -236,6 +236,104 @@ $margin: 16px
 
       <article>
         <h3>Caching</h3>
+        Temporary storage of generated HTML pages to avoid requests from having to go through the (slower) Rails stack.
+        <ul>
+          <li>First:
+            Enable caching
+            <pre>config.action_controller.perform_caching = true</pre>
+            (Disabled by default for <code>development</code> and <code>test</code> environments)
+          </li>
+          <li>
+            Next: 
+            What level of caching to use?
+            <ul>
+              <li>Page Caching</li>
+              <li>Action Caching</li>
+              <li>Fragment Caching</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Caching: Page Caching</h3>
+        Allows page to be served by the webserver instead of going through the Rails stack.
+        <ul>
+          <li>Faster, but for "static" pages only, not for dynamic/authenticated content</li>
+          <li>GET parameters ignored, won't work for pagination ex. <code>users.html?page=1</code> vs <code>users.html?page=2</code></li>
+        </ul>
+        <pre>
+class UsersController < ActionController
+  caches_page :index
+ 
+  def index
+    @users = User.all
+  end
+end
+</pre>
+      </article>
+
+      <article>
+        <h3>Caching: Action Caching</h3>
+        Request goes through the Rails stack first (ex. so filters can run), then cached copy is served.
+        <ul>
+          <li>Pass in a block via <code>if</code> or <code>unless</code> to specify when the action should be cached</li>
+          <li>Use <code>:layout => false</code> to cache without the layout (which typically contains logged in user information, etc</li>
+        </ul>
+        <pre>
+class UsersController < ActionController
+  before_filter :logged_in
+  caches_action :index
+ 
+  def index
+    @users = User.all
+  end
+end
+</pre>
+      </article>
+
+      <article>
+        <h3>Caching: Fragment Caching</h3>
+        Fine-grained control over caching specific parts of a page.
+        <ul>
+          <li>Pass in a block via <code>if</code> or <code>unless</code> to specify when the action should be cached</li>
+          <li>Use <code>:layout => false</code> to cache without the layout (which typically contains logged in user information, etc</li>
+        </ul>
+<pre>
+<%= @current_user.name if @current_user %>
+
+<% cache 'fragment-name' %>
+  <% for i in @items %>
+    <%= i.name %>
+  <% end %>
+<% end %>
+</pre>
+      </article>
+
+      <article>
+        <h3>Caching: Page Expirations</h3>
+        <ul>
+          <li>The simple/tedious way:
+<pre>
+expire_[page|action] :action => :index
+</pre>
+<pre>
+expire_fragment 'fragment-name'
+</pre>
+          </li>
+          <li>
+            Sweepers
+            <pre>
+class UserSweeper < ActionController::Caching::Sweeper
+  observe User 
+
+  def after_create(user)
+    expire_page :controller => :users, :action => :index
+  end
+end
+</pre>
+          </li>
+        </ul>
       </article>
 
       <article>
@@ -252,6 +350,12 @@ $margin: 16px
           </li>
           <li>
             Template inlining
+          </li>
+          <li>
+            SQL Caching
+              <ul>
+                <li>Rails does this already, within actions</li>
+              </ul>
           </li>
         </ul>
       </article>
