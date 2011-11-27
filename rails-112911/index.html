@@ -104,11 +104,22 @@
 
       <article>
         <h3>
-          method_missing
+          <code>method_missing</code>
         </h3>
+        Method that gets invoked when the method you're trying to call doesn't exist (shocking, right?).
         <ul>
           <li>
-            (fill in)
+            How metaprogramming magic like <code>find_by_*</code> is implemented:
+<pre>
+class Person < ActiveRecord::Base
+  def self.method_missing method_name, *args
+    if method_name =~ /^find_all_by_(\w+)$/
+      self.all(:conditions => {$1 => args[0]})
+    end
+  end
+end
+</pre>
+          <code>Person.find_by_name("amber")</code> => <code>Person.all(:conditions => {:name => "amber"})</code>
           </li>
         </ul>
       </article>
@@ -227,7 +238,8 @@ $margin: 16px
         <ul>
           <li> Queries are chainable, like jQuery </li>
           <pre>Talks.where( :host =&gt; 'H@B' ).order( :date )</pre>
-          <li> Why not just <pre class='inline'>Talks.all.filter{...}.sort{...}</pre>?
+          <li> Why not just chain them all?:
+            <pre>Talks.all.filter{...}.sort{...}</pre>
             <ul>
               <li> Queries make the database do the work </li>
               <li> Materialize only what you need &#8211; save memory and cycles</li>
@@ -286,8 +298,8 @@ resources :memes
 namespace :admin do
   get '/x' =&gt; 'admin#x_all_the_y', :as =&gt; :uber
 end</pre>
-            <pre> &lt;%= link_to 'x ALL the y', admin_uber_path -%&gt; <span class='right'># '/admin/uber'</span> </pre>
-            <pre> &lt;%= link_to 'x', meme_url(42) -%&gt; <span class='right'># 'http://mysite.com/memes/42'</span> </pre>
+            <pre>&lt;%= link_to 'x ALL the y', admin_uber_path -%&gt; <span class='right'># '/admin/uber'</span> </pre>
+            <pre>&lt;%= link_to 'x', meme_url(42) -%&gt; <span class='right'># 'http://mysite.com/memes/42'</span> </pre>
             </li>
           <li> Mostly use <code>_path</code>, and <code>_url</code> only to switch protocols </li>
         </ul>
@@ -366,19 +378,24 @@ end
       <article>
         <h3>Caching: Fragment Caching</h3>
         Fine-grained control over caching specific parts of a page.
-        <ul>
-          <li>Pass in a block via <code>if</code> or <code>unless</code> to specify when the action should be cached</li>
-          <li>Use <code>:layout => false</code> to cache without the layout (which typically contains logged in user information, etc</li>
-        </ul>
 <pre>
 <%= @current_user.name if @current_user %>
 
-<% cache 'fragment-name' %>
+<% cache do %>
   <% for i in @items %>
     <%= i.name %>
   <% end %>
 <% end %>
 </pre>
+Or, name your cache block:
+<pre>
+<% cache :action => :show, :action_suffix => 'fragment-name' do %>
+</pre>
+<pre>
+<% cache 'fragment-name' do %>
+</pre>
+  </li>
+</ul>
       </article>
 
       <article>
@@ -411,10 +428,11 @@ end
         <h3>Rails Performance Tips</h3>
         <ul>
           <li>
-            Eagerly load associations
+            Eagerly load associations to minimize number of queries
             <pre>
-              // Do this
-            </pre>  
+users = User.includes(:photo).all
+users.each { |user| puts user.photo.url }
+</pre>  
           </li>
           <li>
             Include as much asynchrony as possible (<code>DelayedJob</code>/<code>BackgroundJob</code>)
