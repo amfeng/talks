@@ -17,9 +17,21 @@
     <title>H@B Ruby on Rails Workshop 11/29/11 - Amber Feng and Jon Ko</title>
     <meta charset='utf-8'>
     <script src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type='text/javascript'>
+      $(document).ready( function(){
+        /* Wrap elements having data-url in an appropriate a */
+        $('*[data-url]').wrap( function(){
+          return $('<a></a>').attr( 'href', $(this).attr( 'data-url' ) );
+        });
+      });
+    </script>
   </head>
   
-  <style>
+  <style type='text/css'>
+    .left  { float: right; }
+    .right { float: right; }
+    .inline { display: inline; }
   </style>
 
   <body style='display: none'>
@@ -201,9 +213,7 @@ $margin: 16px
       </article>
 
       <article>
-        <h3>
-          ActiveRecord
-        </h3>
+        <h3> ActiveRecord </h3>
         <ul>
           <li>
             (fill in)
@@ -212,13 +222,74 @@ $margin: 16px
       </article>
 
       <article>
-        <h3>
-          Routes
-        </h3>
+        <h3 data-url="http://guides.rubyonrails.org/active_record_querying.html"> ActiveRecord Query Interface </h3>
+
         <ul>
-          <li>
-            (fill in)
+          <li> Queries are chainable, like jQuery </li>
+          <pre>Talks.where( :host =&gt; 'H@B' ).order( :date )</pre>
+          <li> Why not just <pre class='inline'>Talks.all.filter{...}.sort{...}</pre>?
+            <ul>
+              <li> Queries make the database do the work </li>
+              <li> Materialize only what you need &#8211; save memory and cycles</li>
+            </ul>
+            </li>
+          <li> Offload common tasks to the DB
+            <ul>
+              <li> <span data-url="http://guides.rubyonrails.org/active_record_querying.html#existence-of-objects">existence</span>,
+                   <span data-url="http://guides.rubyonrails.org/active_record_querying.html#calculations">aggregates</span>
+              </li>
+            </ul>
           </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3> Routes </h3>
+        <ul>
+          <li> Map URL &rarr; controller, action
+            <pre>match "/aUrl" =&gt; "a_controller#an_action"</pre>
+            </li>
+          <li> Can declare parameters:
+            <pre>match "/view/:post_id" =&gt; "posts#show"</pre>
+            </li>
+          <li> <dfn> <code>scope</code> </dfn> is like a folder for routes </li>
+          <li> <dfn data-url="http://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing"><code>namespace</code></dfn>
+               is a <code>scope</code> that also organizes code </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3> Routes Protip #1: Action Splitting </h3>
+        <ul>
+          <li> Instead of <code>match</code>, split into two actions
+            <pre>
+get  "/login" =&gt; "user_session#new"
+post "/login" =&gt; "user_session#create"</pre>
+            </li>
+          <li> Maintains consistency for form validation </li>
+          <li> "Whitelist, not blacklist" &#8211; <code>match</code> encourages sloppy API
+            <ul>
+              <li> Do you really want <strong>GET /login</strong>, <strong>POST /login</strong>,
+                   <strong>DELETE /login</strong> to do the same thing?? </li>
+            </ul>
+            </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3> Routes Protip #2: Named Helpers </h3>
+        <ul>
+          <li> <em>Never ever</em> hard-code URLs outside of <code>routes.rb</code> </li>
+          <li> Route names become controller &amp; view methods
+            <pre>
+resources :memes
+namespace :admin do
+  get '/x' =&gt; 'admin#x_all_the_y', :as =&gt; :uber
+end</pre>
+            <pre> &lt;%= link_to 'x ALL the y', admin_uber_path -%&gt; <span class='right'># '/admin/uber'</span> </pre>
+            <pre> &lt;%= link_to 'x', meme_url(42) -%&gt; <span class='right'># 'http://mysite.com/memes/42'</span> </pre>
+            </li>
+          <li> Mostly use <code>_path</code>, and <code>_url</code> only to switch protocols </li>
         </ul>
       </article>
 
@@ -455,12 +526,27 @@ end
 
       <article>
         <h3>
-          RVM
+            <a href="http://beginrescueend.com/">RVM (Ruby Version Manager)</a>
         </h3>
         <ul>
-          <li>
-            (fill in)
-          </li>
+          <li> Sandboxes Ruby / Gem installations
+            <ul>
+              <li> One <code>ruby</code> version has multiple <code>gemset</code>s </li>
+              <li> One <code>gemset</code> per project / Gemfile </li>
+            </ul>
+            </li>
+          <li> Essential when working on multiple projects...
+            <ul>
+              <li> <code>rvm 1.8.7@hkn</code> with Rails 3.0 for HKN </li>
+              <li> <code>rvm 1.9.2@wdd</code> with Rails 3.0 for Web Design </li>
+              <li> <code>rvm 1.9.2@jk</code> with Rails 3.1 for personal site </li>
+            </ul>
+            </li>
+          <li> ... or if you don't have <code>sudo</code>
+            <ul>
+              <li> Installs everything (ruby and gems) into <code>~/.rvm/</code> </li>
+            </ul>
+            </li>
         </ul>
       </article>
 
