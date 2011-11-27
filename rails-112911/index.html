@@ -29,9 +29,13 @@
   </head>
   
   <style type='text/css'>
-    .left  { float: right; }
+    .left  { float: left; }
     .right { float: right; }
     .inline { display: inline; }
+
+    h4 {
+      margin-bottom: 0.2em;
+    }
   </style>
 
   <body style='display: none'>
@@ -83,11 +87,28 @@
         <h3>
           Ruby on Rails? 
         </h3>
-        <ul>
-          <li>
-            (fill in)
-          </li>
-        </ul>
+        <div>Web application framework, written in Ruby</div>
+
+        <div class="left" style="margin-top: 1.6em; margin-right: 1em; width: 150px;">
+          <img style="width: 100%" src="http://blog.smalleycreative.com/wp-content/uploads/2011/01/rails-235x300.png">
+        </div>
+        <p>
+          <h4>DRY - "Don't Repeat Yourself"</h4>
+          Duplicate code is bad
+        </p>
+
+        <p>
+          <h4>Convention over Configuration</h4>
+          Rails assumes it knows what you want
+        </p> 
+
+        <p>
+          <h4>REST</h4>
+          (fill in) 
+        <p>
+          <h4>MVC Framework (Model, View, Controller)</h4>
+          (fill in)
+        </p>
       </article>
 
       <article>
@@ -109,7 +130,7 @@
         Method that gets invoked when the method you're trying to call doesn't exist (shocking, right?).
         <ul>
           <li>
-            How metaprogramming magic like <code>find_by_*</code> is implemented:
+            How metaprogramming magic like <code>find_by_*</code> is implemented (simplified):
 <pre>
 class Person < ActiveRecord::Base
   def self.method_missing method_name, *args
@@ -188,7 +209,7 @@ $margin: 16px
         </h3>
         <ul>
           <li>
-            (fill in)
+            (fill in, possibly with a diagram?)
           </li>
         </ul>
       </article>
