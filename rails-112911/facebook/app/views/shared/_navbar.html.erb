@@ -1,10 +1,17 @@
-<div id="navbar">
+<div id="navbar" class="clearfix">
   <div class="left logo">railsbook</div>
   <div class="right profile-menu">
     <%- if @current_user -%>
       <%= @current_user.email %>
+      <div class="dropdown-menu closed">
+        <a class="dropdown-button">&diams;</a>
+        <ul class="dropdown-menu-content">
+          <li><%= link_to 'Settings', edit_user_path(@current_user) %></li>
+          <li><%= link_to 'Logout', logout_path %></li>
+        </ul>
+      </div>
     <%- else -%>
-      log in
+      <%= render 'shared/login', :session => @current_user_session %>
     <%- end -%>
   </div>
 </div>

@@ -2,6 +2,7 @@ Facebook::Application.routes.draw do
 
   # Registration & sessions
   get   "register" => "users#new",             :as => :register
+  post  "register" => "users#create"
   get   "login"    => "user_sessions#new",     :as => :login
   match "logout"   => "user_sessions#destroy", :as => :logout
 

@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Signika+Negative);
+
 body {
   padding: 0;
   margin: 0;
@@ -28,21 +30,81 @@ html[xmlns] .clearfix {
   height: 1%;
 }
 
+* {
+  font-family: 'Signika Negative', sans-serif;
+}
 
+input[type='submit'],
+input[type='button'] {
+  background-color: lightgreen;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 6pt;
+  cursor: pointer;
+}
+
+input[type='text'],
+input[type='password']
+{
+  border-radius: 5px;
+}
+
+.dropdown-menu {
+  display: inline-block;
+}
+
+.dropdown-menu-content {
+  display: none;
+  position: absolute;
+  right: 0px;
+  background-color: #f8aaaa;
+  padding: .5em;
+}
+.dropdown-menu-content li {
+  margin: 0;
+  cursor: pointer;
+}
+
+.dropdown-menu.open .dropdown-menu-content {
+  display: block;
+}
+
+.dropdown-menu .dropdown-button {
+  width: 12pt;
+  height: 100%;
+  text-align: center;
+  padding: 2pt 5pt;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-menu .dropdown-button:hover {
+  background-color: #b80b05;
+}
 
 #page {
   width: 100%;
 }
 
+/************
+  Navbar
+ ************/
+
 #navbar {
   width: 100%;
   background-color: #980905;
-  height: 37.9px;
   color: white;
 }
 
 #navbar div {
   margin: 4px;
+}
+
+#messages {
+  display: block;
+  margin: 0 auto;
+  background-color: lightyellow;
 }
 
 #content {
