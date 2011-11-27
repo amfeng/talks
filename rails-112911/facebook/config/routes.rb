@@ -6,6 +6,8 @@ Facebook::Application.routes.draw do
   get   "login"    => "user_sessions#new",     :as => :login
   match "logout"   => "user_sessions#destroy", :as => :logout
 
+  get   '/' => 'home#index', :as => :home
+
   resources :users
   resources :user_sessions
 
