@@ -1,0 +1,53 @@
+body {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  width: 100%;
+  display: block;
+}
+
+.left  { float: left; }
+.right { float: right; }
+
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+
+
+
+#page {
+  width: 100%;
+}
+
+#navbar {
+  width: 100%;
+  background-color: #980905;
+  height: 37.9px;
+  color: white;
+}
+
+#navbar div {
+  margin: 4px;
+}
+
+#content {
+  width: 980px;
+  display: block;
+  margin: 0 auto;
+}
+

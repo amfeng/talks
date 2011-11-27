@@ -1,0 +1,10 @@
+<div id="navbar">
+  <div class="left logo">railsbook</div>
+  <div class="right profile-menu">
+    <%- if @current_user -%>
+      <%= @current_user.email %>
+    <%- else -%>
+      log in
+    <%- end -%>
+  </div>
+</div>

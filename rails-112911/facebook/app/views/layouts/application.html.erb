@@ -8,12 +8,15 @@
 </head>
 <body>
 
-<% if flash[:notice] %>
-  <div id="notice">
-    <%= flash[:notice] %>
+<div id="page">
+
+  <%= render :partial => 'shared/navbar' %>
+  <%= render 'shared/flash', :flash => flash %>
+
+  <div id="content">
+    <%= yield %>
   </div>
-<% end %>
-<%= yield %>
+</div>
 
 </body>
 </html>

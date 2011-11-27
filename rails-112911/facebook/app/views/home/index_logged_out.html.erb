@@ -1,0 +1,10 @@
+<div class="left">
+  Railsbook helps you connect with the Rails app development process.
+</div>
+
+<div class="right">
+  <%- form_for User.new, :url => register_path do |f| -%>
+    <%= render :partial => 'users/form', :object => f %>
+    <%= f.submit 'Sign Up!' %>
+  <%- end -%>
+</div>
