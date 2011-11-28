@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     :dependent => :destroy
   has_many :friends,
     :through   => :friendships
+  has_many :posts
 
   attr_accessible :email, :name, :password, :password_confirmation
 end

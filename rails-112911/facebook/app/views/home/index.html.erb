@@ -1,5 +1,12 @@
-<h1>Welcome, <%= @current_user.name %></h1>
-
 <div id="newsfeed">
+<h1>Newsfeed</h1>
+<ul>
+  <% for post in @posts %>
+    <li class="newsfeed-item">
+      <span class="author"><%= post.user.name %></span>
+      <span class="content"><%= post.content %></span>
+    </li>
+  <% end %>
+</ul>
   
 </div>
