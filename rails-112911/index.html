@@ -19,14 +19,6 @@
     <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
     <script src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type='text/javascript'>
-      $(document).ready( function(){
-        /* Wrap elements having data-url in an appropriate a */
-        $('*[data-url]').wrap( function(){
-          return $('<a></a>').attr( 'href', $(this).attr( 'data-url' ) );
-        });
-      });
-    </script>
   </head>
   
   <style type='text/css'>
@@ -38,7 +30,7 @@
       margin-bottom: 0.2em;
     }
 
-    .slides > article a, .slides > article *[data-url] {
+    .slides > article a {
       color: #B52448;
     }
 
@@ -55,6 +47,14 @@
       color: #fff;
       font-family: 'Abel', Helvetica, sans-serif;
       text-transform: uppercase;
+    }
+
+    .slides > #cover a {
+      color: #ddd;
+    }
+
+    .slides > #cover a:hover {
+      color: #fff;
     }
 
     .slides > .segue h2 {
@@ -81,34 +81,13 @@
             H@B Ruby on Rails Workshop
           </h1>
           <p>
-            Amber Feng and Jon Ko
+            <a href="http://www.amberfeng.com">Amber Feng</a> and Jon Ko
             <br>
             November 29, 2011
           </p>
         </div>
       </article>
       
-      <article>
-        <h3>
-          Introduction
-        </h3>
-
-        <h4><a href="http://www.amberfeng.com">Amber Feng</a></h4>
-        <ul style="margin-top: 0.2em;">
-          <li>4th year EECS major</li>
-          <li>Lots of web dev, startups, hacks, etc</li>
-        </ul>
-
-        <h4>Jon Ko</h4>
-        <ul style="margin-top: 0.2em;">
-          <li>4th year EECS major</li>
-          <li>(fill in)</li>
-        </ul>
-
-        <p style="margin-top: 1.2em;">Together, we've worked on the <a href="http://www.webdesigndecal.com">Web Design Decal</a> and <a href="http://hkn.eecs.berkeley.edu">HKN</a> websites!</p> 
-
-      </article>
-
       <article>
         <h3>
           Ruby on Rails? 
@@ -290,14 +269,14 @@ u.update_attributes(params[:user]) # matter what's in params[:user]
             </ul>
             </li>
           <li> Offload common tasks to the DB:
-              <span data-url="http://guides.rubyonrails.org/active_record_querying.html#existence-of-objects">existence</span>,
-              <span data-url="http://guides.rubyonrails.org/active_record_querying.html#calculations">aggregates</span>
+              <span><a href="http://guides.rubyonrails.org/active_record_querying.html#existence-of-objects">existence</a></span>,
+              <span><a href="http://guides.rubyonrails.org/active_record_querying.html#calculations">aggregates</a></span>
           </li>
         </ul>
       </article>
 
       <article>
-        <h3 data-url="http://api.rubyonrails.org/classes/ActiveRecord/NamedScope/ClassMethods.html#">ActiveRecord: Scopes</h3>
+        <h3><a href="http://api.rubyonrails.org/classes/ActiveRecord/NamedScope/ClassMethods.html#">ActiveRecord: Scopes</a></h3>
 
         <ul>
           <li><dfn>scope</dfn>s are like functions for relations</li>
@@ -329,7 +308,7 @@ return results.all                 # query actually runs here
             <pre>match "/view/:post_id" =&gt; "posts#show"</pre>
             </li>
           <li> <dfn> <code>scope</code> </dfn> is like a folder for routes </li>
-          <li> <dfn data-url="http://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing"><code>namespace</code></dfn>
+          <li> <dfn><code><a href="http://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing">namespace</a></code></dfn>
                is a <code>scope</code> that also organizes code </li>
         </ul>
       </article>
