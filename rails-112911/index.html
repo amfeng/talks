@@ -564,26 +564,54 @@ users.each { |user| puts user.photo.url }
       </article>
 
       <article>
-        <h3>
-          Deploying
-        </h3>
+        <h3> Deploying: <a href="http://www.heroku.com/">Heroku</a> </h3>
         <ul>
-          <li>
-            Heroku (fill in)
-          </li>
-          <li>
-            Capistrano (fill in)
-          </li>  
+          <li>Heroku is a (starting for free!) cloud host for Rails, node.js, Python, and friends</li>
+          <li>Service-oriented: You provide app, they provide everything else</li>
+          <li><a href="http://devcenter.heroku.com/articles/quickstart">Setup</a>
+            <ol>
+              <li>Add <code>gem heroku</code> to your Gemfile</li>
+              <li><code>heroku auth:login</code></li>
+              <li><code>heroku create [APP NAME] [-s STACK]</code><br/>
+                  or <code>git remote add heroku git@heroku.com:appname.git</code>
+                </li>
+              <li><code>git push heroku master</code></li>
+            </ol>
+            </li>
+      </article>
+
+      <article>
+        <h3> Heroku: Stacks on Deck... </h3>
+        <ul>
+           <li>Two deployment configurations: <em>bamboo</em> and <em>cedar</em>
+           <li>Cedar is kind of beta but is <a href="http://devcenter.heroku.com/articles/rails3">the more flexible stack</a>
+             <ul>
+               <li>Finer control over server and worker processes</li>
+               <li>It's also the only one that supports Rails 3.1</li>
+             </ul>
+             </li>
+           <li><code>heroku create -s cedar [APP NAME]</code></li>
         </ul>
       </article>
 
       <article>
-        <h3>
-          Gems
-        </h3>
+        <h3>Deploying: Capistrano</h3>
+
         <ul>
           <li>
-            (fill in)
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Gems</h3>
+        <ul>
+          <li>Prepackaged external plugins, loaded during Rails init</li>
+          <li><code>Gemfile</code> is a manifest of all gems your app needs to run</li>
+          <li><code>bundle</code> ensures all Gemfile gems are installed</li>
+          <li><code>gem</code> shows and configures individual gems. Usually don't use this directly, as of Rails 3.</li>
+          <li><code>Gemfile.lock</code> indicates known-good versions of Gemfile gems, and <em>should be checked in</em> to your source tree</li>
+          <li><code>bundle package</code> caches Gemfile.lock'd gems locally. Useful for fast, non-Heroku deployment</li>
           </li>
         </ul>
       </article>
