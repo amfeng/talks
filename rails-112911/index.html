@@ -348,8 +348,6 @@ end</pre>
         </ul>
       </article>
 
-      <!-- Insert other Best Practices slides? -->
-
       <article class="segue">
         <h2>
           Performance
@@ -357,20 +355,34 @@ end</pre>
       </article>
 
       <article>
-        <h3>Find your Bottlenecks</h3>
+        <h3><a href="http://guides.rubyonrails.org/performance_testing.html">Find your Bottlenecks</a></h3>
+        <ul>
+          <li>
+            <dfn>Benchmarking</dfn>: running code multiple times to measure pure speed
+            <pre>rake test:benchmark</pre>
+            <pre>
+User.benchmark("Finding Friends") do ... end
+</pre>
+          </li>
+          <li>
+            <dfn>Profiling</dfn>: finding the slowest running part(s) of the program
+            <ul>
+              <li>Percentage of time, memory, etc. used in each method</li>
+            </ul>
+            <pre>rake test:profile</pre>
+          </li>
+        </ul>
       </article>
 
       <article>
         <h3>Caching</h3>
         Temporary storage of generated HTML to (in some cases) bypass Rails processing
         <ul>
-          <li>First:
-            Enable caching
+          <li>First, enable caching
             <pre>config.action_controller.perform_caching = true</pre>
-            (Disabled by default for <code>development</code> and <code>test</code> environments)
+            (disabled by default for <code>development</code> and <code>test</code> environments)
           </li>
           <li>
-            Next: 
             What level of caching to use?
             <ul>
               <li>Page Caching</li>
@@ -454,7 +466,7 @@ expire_fragment 'fragment-name'
           </li>
           <li>
             Sweepers
-            <pre>
+<pre>
 class UserSweeper < ActionController::Caching::Sweeper
   observe User 
 
@@ -470,27 +482,61 @@ end
       <article>
         <h3>Perf Protip #1: Eager Loading</h3>
         Eagerly load associations to minimize number of queries
-        <pre>
-users = User.includes(:photo).all
-users.each { |user| puts user.photo.url }
+
+        <h4>Q: How many SQL queries are made? <span class="build"><span>A: 1 + 100 queries</span></span></h4>
+<pre>
+@posts = Post.all # 100 posts
+for post in @posts
+  puts post.author.name
+end
+</pre>
+
+Instead, ask Rails to load all the referenced authors ahead of time with one query: <span class="build"><span><strong>= 2 queries total</strong></span></span>
+<pre>
+@posts = Post.includes(:author).all
 </pre>  
+
+<a href="https://github.com/flyerhzm/bullet">Bullet</a> to help you track N + 1 queries!
   
-        (fill in)
       </article>
       
       <article>
         <h3>Perf Protip #2: Asynchrony</h3>
-        Include as much asynchrony (is this even a real word?) as possible 
+        Send a response back ASAP, let long running jobs (ex. file uploading, sending emails) run in the background
         <ul>
-          <li>Send a response back ASAP, let long running jobs (ex. file uploading, sending emails) run in the background</li>
+          <li>
           <li><code><a href="https://github.com/tobi/delayed_job">DelayedJob</a></code></li>
+<pre>
+class EmailingJob < Struct.new(:text, :emails)
+  def perform
+    emails.each { |e| Mailer.send_email(e, text) }
+  end    
+end  
+
+Delayed::Job.enqueue EmailJob.new('content', @emails)
+</pre>
+<pre>
+rake jobs:work
+</pre>
           <li><a href="http://momentapp.com/">Moment</a></li>
         </ul>
       </article>
 
       <article>
-        <h3>Perf Protip #3: Template Inlining</h3>
-        (fill in)
+        <h3>Perf Protip #3: Indexes</h3>
+        <dfn>Database index</dfn>: data structures to speed up database lookups either on random lookups (hash) or ordered/range lookups (tree).
+
+<pre>
+def self.up
+  add_index :users, :last_name
+end
+</pre>
+        <h4>Where might I need indexes?</h4>
+        <ul style="margin-top: 0.2em;">
+          <li>Indexes created on primary keys by default, but what about foreign keys (commonly needed)?</li>
+          <li>Columns that you need to sort on</li>
+        </ul>
+        <p style="margin-top: 1em;"><a href="https://github.com/eladmeidar/rails_indexes">Helper plugins</a> exist to help you find where you should be using them!</p>
       </article>
 
       <article class="segue">
