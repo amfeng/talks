@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :friends,
     :through   => :friendships
 
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation
 end
