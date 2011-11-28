@@ -606,12 +606,44 @@ protect_from_forgery
 
       <article>
         <h3>Cross-site Scripting (XSS)</h3>
-        (fill in)
+        Without properly sanitizing user input, client-side executable code can be injected
+        <h4>How it happens:</h4>
+        <ol>
+          <li>
+            Attacker writes a comment in a blog with the code
+            <pre>&lt;script type="text/javascript"&gt;alert("HACKHACKHACK");&lt;/script&gt;</pre>
+          </li>
+          <li>
+            The web application naively saves the content in the database, without santizing anything
+          </li>
+          <li>
+            When users visit the site, the web application prints out the raw content of each content, thus executing the Javascript
+          </li>
+        </ol>
+      </article>
+
+      <article>
+        <h3>Cross-site Scripting (XSS)</h3>
+        <h4>Malicious uses</h4>
+        <ul>
+          <li>
+            Cookie theft, session fixation, other bad things
+          </li>
+        </ul>
+
+        <h4>Countermeasures</h4>
+        <ul>
+          <li>Input filtering (whitelist, don't blacklist)</li>
+          <li>Escape HTML when redisplaying user input
+            <pre><%=h comment.content %></pre>
+            Rails now does this by default, so use <code><%=raw %></code> when you <em>don't</em> want HTML escaping
+          </li>
+        </ul>
       </article>
 
       <article>
         <h3>SQL Injection</h3>
-        <div style="margin-top: 1em; text-align: center;">
+        <div style="margin-top: 4.5em; text-align: center;">
           <img src="xkcd_sqlinjection.png">
         </div>
         <div class="source">
