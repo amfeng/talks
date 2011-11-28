@@ -66,6 +66,14 @@
       font-family: 'Abel', Helvetica, sans-serif;
       text-transform: uppercase;
     }
+
+    .slides > article div.source {
+      top: auto;
+      left: auto;
+      bottom: 50px;
+      right: 60px;
+      padding-right: 0px; 
+    }
   </style>
 
   <body style='display: none'>
@@ -173,7 +181,7 @@ end
       </article>
 
       <article>
-        <h3>Asset Pipeline (cont'd)</h3>
+        <h3>Asset Pipeline</h3>
         <ul>
           <li>
             Using Sass, Haml, CoffeeScript, etc.
@@ -524,7 +532,7 @@ rake jobs:work
 
       <article>
         <h3>Perf Protip #3: Indexes</h3>
-        <dfn>Database index</dfn>: data structures to speed up database lookups either on random lookups (hash) or ordered/range lookups (tree).
+        <dfn>Database index</dfn>: data structures to speed up database lookups either on random lookups (hash) or ordered/range lookups (tree)
 
 <pre>
 def self.up
@@ -551,12 +559,49 @@ end
 
       <article>
         <h3>Session Hijacking</h3>
-        (fill in)
+        Impersonating someone by stealing their session_id (which an app uses in place of re-logging in every time)
+        <ul>
+          <li>
+            Sniffing the cookie in an insecure network (ex. <a href="http://codebutler.com/firesheep">Firesheep</a>). 
+            <ul>
+              <li>
+                Force SSL:
+                <pre>config.force_ssl = true</pre>
+              </li>
+              <li>
+                Expire sessions (on the server)
+              </li>
+            </ul>
+          </li>
+        </ul>
       </article>
 
       <article>
         <h3>Cross-site Request Forgery (CSRF)</h3>
-        (fill in)
+        Malicious code taking advantage of the fact that a user is "logged in" elsewhere
+
+        <div style="margin-top: 1em; text-align: center;"><img src="csrf.png"></div>
+        <div class="source">Source: <a href="http://guides.rubyonrails.org/security.html">Ruby on Rails Guide, Security</a></div>
+      </article>
+
+      <article>
+        <h3>Cross-site Request Forgery (CSRF)</h3>
+        <h4>So, how do we protect against CSRF?</h4>
+        <ul style="margin-top: 0.2em;">
+          <li>Use GET and POST appropriately</li>
+          <li>
+            Built-in Rails protection: includes a security token to go along with non-GET requests
+<pre>
+protect_from_forgery
+</pre>
+<pre>
+&lt;input name="authenticity_token" type="hidden" 
+  value="01048766ce9a8a001a85386a9502f64e64991ea8" /&gt;</pre>
+            <ul>
+              <li>If doesn't match, resets session and raise <code>ActionController::InvalidAuthenticityToken</code></li>
+            </ul>
+          </li>
+        </ul>
       </article>
 
       <article>
@@ -566,7 +611,12 @@ end
 
       <article>
         <h3>SQL Injection</h3>
-        (fill in)
+        <div style="margin-top: 1em; text-align: center;">
+          <img src="xkcd_sqlinjection.png">
+        </div>
+        <div class="source">
+          Source: <a href="http://xkcd.com/327/">XKCD, Exploits of a Mom</a>
+        </div>
       </article>
 
       <article class="segue">
