@@ -1,0 +1,21 @@
+<%# Renders email / password login box.
+    @param session [UserSession]
+ %>
+<div class="login-bar">
+  <%= form_for session || UserSession.new, login_path do |f| -%>
+    <div class="left">
+      <%= f.label :email %><br/>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="left">
+      <%= f.label :password %><br/>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="right">
+      <%= f.submit 'Login', :class => 'login-button' %>
+    </div>
+
+  <%- end -%>
+</div>
