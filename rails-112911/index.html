@@ -38,7 +38,7 @@
       margin-bottom: 0.2em;
     }
 
-    .slides > article a {
+    .slides > article a, .slides > article *[data-url] {
       color: #B52448;
     }
 
@@ -251,25 +251,71 @@ $margin: 16px
       </article>
 
       <article>
-        <h3><a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord Query Interface</a></h3>
+        <h3>ActiveRecord: Security</h3>
 
         <ul>
-          <li> Queries are chainable, like jQuery </li>
+          <li>Use <code>attr_accessible</code> to whitelist user-assignable attributes and prevent form injection attacks
+<pre>
+class User &lt; ActiveRecord::Base
+
+  # === List of columns ===
+  #   name                : string
+  #   email               : string
+  #   crypted_password    : string
+  #   approved            : boolean
+  ...
+  attr_accessible :name, :email
+</pre>
+
+<pre>
+u = User.find(params[:id])         # Only updates :name, :email no
+u.update_attributes(params[:user]) # matter what's in params[:user]
+</pre>
+            </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord: Query Interface</a></h3>
+
+        <ul>
+          <li> Query methods return <dfn>relations</dfn> (lazy SQL queries) </li>
+          <li> Relations are chainable, like jQuery </li>
           <pre>Talks.where( :host =&gt; 'H@B' ).order( :date )</pre>
-          <li> Why not just chain them all?:
+          <li> Why not just chain them?:
             <pre>Talks.all.filter{...}.sort{...}</pre>
             <ul>
               <li> Queries make the database do the work </li>
-              <li> Materialize only what you need &#8211; save memory and cycles</li>
+              <li> Materialize only what you need &#8211; save memory, cycles</li>
             </ul>
             </li>
-          <li> Offload common tasks to the DB
-            <ul>
-              <li> <span data-url="http://guides.rubyonrails.org/active_record_querying.html#existence-of-objects">existence</span>,
-                   <span data-url="http://guides.rubyonrails.org/active_record_querying.html#calculations">aggregates</span>
-              </li>
-            </ul>
+          <li> Offload common tasks to the DB:
+              <span data-url="http://guides.rubyonrails.org/active_record_querying.html#existence-of-objects">existence</span>,
+              <span data-url="http://guides.rubyonrails.org/active_record_querying.html#calculations">aggregates</span>
           </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3 data-url="http://api.rubyonrails.org/classes/ActiveRecord/NamedScope/ClassMethods.html#">ActiveRecord: Scopes</h3>
+
+        <ul>
+          <li><dfn>scope</dfn>s are like functions for relations</li>
+          <li>Generally used to abstract specific subsets of DB entries
+<pre>
+scope :recent, where('updated_at &gt; ?', 1.day.ago)
+scope :tagged, lambda { |tag_name|
+  joins(:tags).where(:tags =&gt; {:label=&gt;tag_name}) }
+</pre>
+            </li>
+          <li>Since relations are lazy-evaluated, we can also use scopes to conditionally filter results in an efficient way
+<pre>
+results = Post
+results = results.recent           if options[:recent]
+results = results.tagged('lulzy')  if options[:lulzy]
+return results.all                 # query actually runs here
+</pre>
+            </li>
         </ul>
       </article>
 
