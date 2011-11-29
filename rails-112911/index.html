@@ -67,6 +67,38 @@
       text-transform: uppercase;
     }
 
+    .slides > article.youtry h3 {
+      font-size: 2em;
+      color: #fff;
+      background: #B52448;
+      position: absolute;
+      left: -20px;
+      padding: 15px 0.7em;
+    }
+
+    .slides > article.youtry h3:after {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 0px;
+      top: 100%;
+      border-width: 5px 10px;
+      border-style: solid;
+      border-color: #850C2A #850C2A transparent transparent;
+    }
+
+    .slides > article.youtry {
+      overflow: visible;
+    }
+
+    .slides > article.youtry .push {
+      height: 2em;
+      width: 1px;
+      margin-bottom: 1em;
+    }
+
+
     .slides > article div.source {
       top: auto;
       left: auto;
@@ -545,6 +577,15 @@ end
           <li>Columns that you need to sort on</li>
         </ul>
         <p style="margin-top: 1em;"><a href="https://github.com/eladmeidar/rails_indexes">Helper plugins</a> exist to help you find where you should be using them!</p>
+      </article>
+
+      <article class="youtry">
+        <h3>Now you try...</h3>
+        <div class="push">
+        </div>
+        Look in <code>app/controller/blah_controller.rb</code>, and fix:
+        ...
+        ..
       </article>
 
       <article class="segue">
