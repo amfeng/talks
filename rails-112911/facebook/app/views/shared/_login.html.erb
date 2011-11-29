@@ -3,14 +3,11 @@
  %>
 <div class="login-bar">
   <%= form_for session || UserSession.new, login_path do |f| -%>
-    <div class="left">
-      <%= f.label :email %><br/>
-      <%= f.text_field :email %>
+    <div class="left" style="margin-right: 0.5em;">
+      <%= f.text_field :email, :placeholder => "email address" %>
     </div>
-
-    <div class="left">
-      <%= f.label :password %><br/>
-      <%= f.password_field :password %>
+    <div class="left" style="margin-right: 0.5em;">
+      <%= f.password_field :password, :placeholder => "password" %>
     </div>
 
     <div class="right">

@@ -1,10 +1,19 @@
-<div class="left">
-  Railsbook helps you connect with the Rails app development process.
-</div>
+<div id="splash-gradient">
+  <div id="inner-content">
 
-<div class="right">
-  <%- form_for User.new, :url => register_path do |f| -%>
-    <%= render :partial => 'users/form', :object => f %>
-    <%= f.submit 'Sign Up!' %>
-  <%- end -%>
+    <div class="clearfix">
+      <div class="left" style="width: 600px;">
+        <h3>Railsbook helps you connect with the Rails app development process.</h3>
+        <%= image_tag "http://static.ak.fbcdn.net/rsrc.php/v1/yi/r/OBaVg52wtTZ.png" %>
+      </div>
+      <div class="left" id="register">
+        <h3>Sign Up</h3>
+        <p>It's better than Facebook.</p>
+        <%- form_for User.new, :url => register_path do |f| -%>
+          <%= render :partial => 'users/form', :object => f %>
+          <%= f.submit 'Sign Up!' %>
+        <%- end -%>
+      </div>
+    </div>
+  </div>
 </div>

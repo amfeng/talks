@@ -1,16 +1,15 @@
-@import url(http://fonts.googleapis.com/css?family=Signika+Negative);
-
 body {
   padding: 0;
   margin: 0;
   position: fixed;
   width: 100%;
   display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: lighter;
 }
 
 .left  { float: left; }
 .right { float: right; }
-
 
 .clearfix:after {
   content: ".";
@@ -20,9 +19,7 @@ body {
   line-height: 0;
   height: 0;
 }
-.clearfix {
-  display: inline-block;
-}
+
 html[xmlns] .clearfix {
   display: block;
 }
@@ -30,23 +27,17 @@ html[xmlns] .clearfix {
   height: 1%;
 }
 
-* {
-  font-family: 'Signika Negative', sans-serif;
-}
-
 input[type='submit'],
 input[type='button'] {
-  background-color: lightgreen;
-  border: 1px solid green;
-  border-radius: 5px;
-  padding: 6pt;
-  cursor: pointer;
 }
 
 input[type='text'],
 input[type='password']
 {
-  border-radius: 5px;
+  font-size: 0.8em;
+  border-radius: 2px;
+  padding: 2px;
+  border: 1px solid #ccc;
 }
 
 .dropdown-menu {
@@ -95,10 +86,16 @@ input[type='password']
   width: 100%;
   background-color: #980905;
   color: white;
+  padding: 0.5em 0;
 }
 
-#navbar div {
-  margin: 4px;
+#nav-wrapper{
+  width: 980px;
+  margin: auto;
+}
+
+.profile-menu {
+  margin-top: 10px;
 }
 
 #messages {
@@ -107,9 +104,13 @@ input[type='password']
   background-color: lightyellow;
 }
 
-#content {
+#inner-content {
   width: 980px;
-  display: block;
   margin: 0 auto;
+  padding-top: 2em;
+}
+
+#splash-gradient {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DBC1C1), to(#FFFFFF));
 }
 
