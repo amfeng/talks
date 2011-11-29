@@ -178,7 +178,8 @@ label {
 
 .newsfeed-item-right {
   float: left;
-  width: 89%;
+  width: 88%;
+  padding: 0.2em;
 }
 
 .newsfeed-item .photo {
@@ -197,6 +198,12 @@ label {
   display: block;
   font-size: 0.9em;
   word-wrap: break-word;
+  padding: 0.5em 0;
+}
+
+.newsfeed-item .time {
+  font-size: 0.7em;
+  color: #333;
 }
 
 newsfeed-item-right {

@@ -5,7 +5,7 @@
       <% for user in @users %>
         <li><%= user.name %>
           <% friend = current_user.friends.include? user %>
-          <%= form_tag (friend ? unfriend_path : friend_path), {:class => "inline"} do %>
+          <%= form_tag((friend ? unfriend_path : friend_path), {:class => "inline"}) do %>
             <%= hidden_field_tag :friend_id, user.id %>
             <%= submit_tag (friend ? "Unfriend" : "Friend"), :class => "inline" %>
           <% end %>
@@ -32,6 +32,7 @@
         <div class="newsfeed-item-right">
           <span class="author"><%= post.user.name %></span>
           <span class="content"><%= post.content %></span>
+          <span class="time"><%= time_ago_in_words(post.created_at) %> ago</span>
         </div>
       </li>
     <% end %>
