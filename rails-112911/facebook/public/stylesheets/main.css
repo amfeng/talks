@@ -107,10 +107,10 @@ input[type='password']
 #inner-content {
   width: 980px;
   margin: 0 auto;
-  padding-top: 2em;
+  padding: 2em 0em;
 }
 
 #splash-gradient {
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DBC1C1), to(#FFFFFF));
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#DBC1C1));
 }
 
