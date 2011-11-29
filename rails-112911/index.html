@@ -196,6 +196,7 @@
           <li>
             Generate a <code>comment</code> model:
             <pre>rails generate model comment user:references post:references content:string</pre>
+            <em>Note: Don't forget to run the database migrations after!</em>
           </li>
           <li>
             Create a method in the <code>PostsController</code>, along with the necessary routes in <code>routes.rb</code> for creating a new comment for a given post
@@ -889,6 +890,18 @@ protect_from_forgery
       </article>
 
     </section>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-17135760-8']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
   </body>
 </html>
 
