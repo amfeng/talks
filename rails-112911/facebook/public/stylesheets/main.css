@@ -96,6 +96,7 @@ input[type='password']
 
 .profile-menu {
   margin-top: 10px;
+  position: relative;
 }
 
 #messages {

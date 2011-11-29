@@ -33,4 +33,12 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
+
+  def friend
+    # TODO(Jon)
+  end
+
+  def unfriend
+    # TODO(Jon)
+  end
 end
