@@ -5,7 +5,6 @@
 body {
   padding: 0;
   margin: 0;
-  position: fixed;
   width: 100%;
   display: block;
   font-family: Helvetica, Arial, sans-serif;
@@ -177,6 +176,11 @@ label {
   margin-right: 1em;
 }
 
+.newsfeed-item-right {
+  float: left;
+  width: 89%;
+}
+
 .newsfeed-item .photo {
   display: block;
   width: 50px;
@@ -192,6 +196,7 @@ label {
 .newsfeed-item .content {
   display: block;
   font-size: 0.9em;
+  word-wrap: break-word;
 }
 
 newsfeed-item-right {
