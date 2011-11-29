@@ -26,6 +26,8 @@
     .right { float: right; }
     .inline { display: inline; }
 
+    .strike { text-decoration: line-through; color: #888; }
+
     h4 {
       margin-bottom: 0.2em;
     }
@@ -294,14 +296,14 @@ $margin: 16px
       </article>
 
       <article>
-        <h3>
-          Rails Stack Flow
-        </h3>
-        <ul>
-          <li>
-            (fill in, possibly with a diagram?)
-          </li>
-        </ul>
+        <h3>Rails Stack Flow</h3>
+        <ol>
+          <li>Client sends HTTP request</li>
+          <li>Server (Apache, WEBRick, Mongrel, etc.) dispatches to Rails module</li>
+          <li>Incoming request goes through the Rack middleware stack</li>
+          <li>Your Rails app does its thing, passing its response to Rack</li>
+          <li>Rack stack returns a response</li>
+        </ol>
       </article>
 
       <!-- Insert other magic-like Rails things, snippets of Rails source code? -->
@@ -314,7 +316,22 @@ $margin: 16px
 
       <article>
         <h3>Fat Model, Skinny Controller</h3>
-        (fill in)
+        <ul>
+          <li>Controller is the <span class="strike">1%</span> boss
+            <ul>
+              <li>Handles permissions, high-level 'business logic'</li>
+              <li>Asks model to report data, crunch numbers, etc.<br/>(all that low-level stuff)</li>
+              <li>Decides what model data needs to be passed to the view via <code>@instance_variables</code></li>
+              <li>Decides which views to render to the client</li>
+            </ul>
+            </li>
+          <li>Model is the MVC workhorse
+            <ul>
+              <li>Handles the 'implementation details'</li>
+              <li>Closest to the database, so it should do most of the data processing</li>
+            </ul>
+            </li>
+        </ul>
       </article>
 
       <article>
