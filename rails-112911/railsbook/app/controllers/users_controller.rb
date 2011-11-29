@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_user, :except => [:new, :create]
   
   def new
     @user = User.new
@@ -35,10 +35,22 @@ class UsersController < ApplicationController
   end
 
   def friend
-    # TODO(Jon)
+    friend = User.find(params[:friend_id]) rescue nil
+    if friend and @current_user.add_friend friend
+      flash[:notice] = "You are now friends with #{friend.name}"
+    else
+    end
+
+    redirect_back_or_default home_path
   end
 
   def unfriend
-    # TODO(Jon)
+    friend = User.find(params[:friend_id]) rescue nil
+    if friend and @current_user.unfriend friend
+      flash[:notice] = "You are no longer friends with #{friend.name}"
+    else
+    end
+
+    redirect_back_or_default home_path
   end
 end

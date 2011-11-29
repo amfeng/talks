@@ -5,8 +5,8 @@
       <% for user in @users %>
         <li><%= user.name %>
           <% friend = current_user.friends.include? user %>
-          <%= form_tag ((friend ? unfriend_path : friend_path), {:class => "inline"}) do %>
-            <%= hidden_field_tag :user_id, :value => user.id %>
+          <%= form_tag (friend ? unfriend_path : friend_path), {:class => "inline"} do %>
+            <%= hidden_field_tag :friend_id, user.id %>
             <%= submit_tag (friend ? "Unfriend" : "Friend"), :class => "inline" %>
           <% end %>
         </li>
