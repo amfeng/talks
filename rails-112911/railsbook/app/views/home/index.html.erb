@@ -1,13 +1,13 @@
 <div id="inner-content">
   <div id="people">
     <h2>Friend List</h2>
-    <ul>
+    <ul class="plain">
       <% for user in @users %>
-        <li><%= user.name %> - 
+        <li><%= user.name %>
           <% friend = current_user.friends.include? user %>
-          <%= form_tag (friend ? unfriend_path : friend_path) do %>
+          <%= form_tag ((friend ? unfriend_path : friend_path), {:class => "inline"}) do %>
             <%= hidden_field_tag :user_id, :value => user.id %>
-            <%= submit_tag (friend ? "Unfriend" : "Friend") %>
+            <%= submit_tag (friend ? "Unfriend" : "Friend"), :class => "inline" %>
           <% end %>
         </li>
       <% end %>
@@ -15,13 +15,15 @@
   </div>
   <div id="newsfeed">
   <h2>Newsfeed</h2>
-  <%= form_tag posts_path do %>
-    <%= fields_for :post do |f| %>
-      <%= f.text_area :content %>
-      <%= f.submit "Post" %>
+  <div id="status-box" class="clearfix">
+    <%= form_tag posts_path do %>
+      <%= fields_for :post do |f| %>
+        <%= f.text_area :content, :placeholder => "Enter status update here" %>
+        <%= f.submit "Post" %>
+      <% end %>
     <% end %>
-  <% end %>
-  <ul>
+  </div>
+  <ul class="plain">
     <% for post in @posts %>
       <li class="newsfeed-item">
         <span class="author"><%= post.user.name %></span>
