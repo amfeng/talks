@@ -164,6 +164,25 @@
         </h2>
       </article>
 
+      <article class="youtry smaller">
+        <h3>Now you try...</h3>
+        <div class="push">
+        </div>
+        <strong>Adding comments for each post</strong>
+        <ol>
+          <li>
+            Generate a <code>comment</code> model:
+            <pre>rails generate model comment user:references post:references content:string</pre>
+          </li>
+          <li>
+            Create a method in the <code>PostsController</code>, along with the necessary routes in <code>routes.rb</code> for creating a new comment for a given post
+          </li>
+          <li>
+            Add a form to the <code>_post.html.erb</code> view partial for posting comments
+          </li>
+        </ol>
+      </article>
+
        <article class="segue">
         <h2>
           Rails Internals
