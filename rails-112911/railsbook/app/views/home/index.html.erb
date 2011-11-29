@@ -25,9 +25,14 @@
   </div>
   <ul class="plain">
     <% for post in @posts %>
-      <li class="newsfeed-item">
-        <span class="author"><%= post.user.name %></span>
-        <span class="content"><%= post.content %></span>
+      <li class="newsfeed-item clearfix">
+        <div class="newsfeed-item-left">
+          <span class="photo"></span>
+        </div>
+        <div class="newsfeed-item-right">
+          <span class="author"><%= post.user.name %></span>
+          <span class="content"><%= post.content %></span>
+        </div>
       </li>
     <% end %>
   </ul>
