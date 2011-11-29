@@ -360,6 +360,21 @@ u.update_attributes(params[:user]) # matter what's in params[:user]
       </article>
 
       <article>
+        <h3><a href="http://guides.rubyonrails.org/active_record_validations_callbacks.html">ActiveRecord: Validations</a></h3>
+        <ul>
+          <li>Make sure all <code>attr_accessible</code>'d attributes are validated</li>
+          <li>especially since Rails enforces almost no constraints at the db level</li>
+          <li>Whitelist, not blacklist:
+            <pre>validates_format_of :name, :with =&gt; /\A[A-Za-z'\.]+\z/</pre>
+            <ul>
+              <li>Use <code>\A</code> and </code>\z</code> instead of <code>^</code> and <code>$</code> in regular expressions.</li>
+              <li>The former match absolute beginning and end, while the latter only match per line</li>
+            </ul>
+            </li>
+        </ul>
+      </article>
+
+      <article>
         <h3><a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord: Query Interface</a></h3>
 
         <ul>
@@ -459,9 +474,17 @@ end</pre>
         </div>
         <ol>
           <li>
-            <strong>(fill in)</strong>
+            <strong>Security</strong>
             <p>
-              (fill in)
+              Our user attributes aren't protected or sanitized. Whitelist the user-assignable attributes and add some validations.
+            </p>
+          </li>
+
+          <li>
+            <strong>Routes</strong>
+            <p>
+              Change the registration path from <code>/register</code> to <code>/signup</code>.<br/>
+              Try actually signing up again -- do all the URLs use named path helpers?
             </p>
           </li>
         </ol>
@@ -839,11 +862,13 @@ protect_from_forgery
       </article>
 
       <article>
-        <h3>Deploying: Capistrano</h3>
+        <h3><a href="https://github.com/capistrano/capistrano/wiki/2.x-Getting-Started">Deploying: Capistrano</a></h3>
 
         <ul>
-          <li>
-          </li>
+          <li>It's like <code>make</code> for deployment</li>
+          <li>Allows you to perform common tasks like migration, cleanup without ssh<li>
+          <li><code>cap deploy</code> directs production server to checkout a fresh copy of the app</li>
+          <li>Can add custom tasks, e.g. a prompt to populate sensitive configuration files</li>
         </ul>
       </article>
 
@@ -892,9 +917,9 @@ protect_from_forgery
         </div>
         <ol>
           <li>
-            <strong>(fill in)</strong>
+            <strong>Make it live!</strong>
             <p>
-              (fill in)
+              Go sign up for a Heroku account and push your app!
             </p>
           </li>
         </ol>
