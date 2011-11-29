@@ -1,4 +1,4 @@
-Facebook::Application.routes.draw do
+Railsbook::Application.routes.draw do
 
   # Registration & sessions
   get   "register" => "users#new",             :as => :register
