@@ -169,6 +169,8 @@ label {
 
 .newsfeed-item {
   margin-bottom: 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #ededed;
 }
 
 .newsfeed-item-left {
