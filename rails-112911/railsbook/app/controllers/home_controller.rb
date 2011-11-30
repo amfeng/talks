@@ -4,6 +4,7 @@ class HomeController < ApplicationController
       @users = User.all
       @users.delete current_user
 
+      # FIXME: Now You Try, Eager Loading
       friends = @current_user.friends
 
       @posts = ( [@current_user] | friends).collect(&:posts).flatten.sort_by(&:created_at)
