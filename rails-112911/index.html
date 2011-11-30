@@ -123,7 +123,7 @@
             H@B Ruby on Rails Workshop
           </h1>
           <p>
-            <a href="http://www.amberfeng.com">Amber Feng</a> and Jon Ko
+            <a href="http://www.amberfeng.com">Amber Feng</a> and <a href="http://jonathanko.net">Jonathan Ko</a>
             <br>
             November 29, 2011
           </p>
@@ -468,6 +468,21 @@ end</pre>
         </ul>
       </article>
 
+      <article>
+        <h3><a href="http://guides.rubyonrails.org/layouts_and_rendering.html#using-partials">Partials</a></h3>
+        <ul>
+          <li>Let you reuse snippets of ERB</li>
+          <li><pre>&lt;%= render :partial =&gt; 'folder/partialname' %&gt;</pre>
+            will render <code>app/views/folder/_partialname.html.erb</code>
+            </li>
+          <li>Like a function; environment isn't passed into the partial. Specify variables:
+<pre>&lt;%= render :partial =&gt; 'folder/partialname',
+           :locals =&gt; { :var1 =&gt; obj1, :var2 =&gt; obj2 } %&gt;</pre>
+<pre>Var1 is &lt;%= var1 %&gt; and var2 is &lt;%= var2 %&gt;</pre>
+            </li>
+        </ul>
+      </article>
+
       <article class="youtry">
         <h3>Now you try...</h3>
         <div class="push">
@@ -483,8 +498,15 @@ end</pre>
           <li>
             <strong>Routes</strong>
             <p>
-              Change the registration path from <code>/register</code> to <code>/signup</code>.<br/>
+              Change the registration path from <code>/register</code> to <code>/signup</code>.
               Try actually signing up again -- do all the URLs use named path helpers?
+            </p>
+          </li>
+
+          <li>
+            <strong>Partials</strong>
+            <p>
+              Refactor <code>home/index.html</code> into partials.
             </p>
           </li>
         </ol>
