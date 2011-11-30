@@ -9,7 +9,7 @@
       <div class="left" id="register">
         <h3>Sign Up</h3>
         <p>It's better than Facebook.</p>
-        <%- form_for User.new, :url => register_path do |f| -%>
+        <%- form_for User.new, :url => '/register' do |f| -%>
           <%= render :partial => 'users/form', :object => f %>
           <%= f.submit 'Sign Up!' %>
         <%- end -%>
