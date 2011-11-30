@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     :through   => :friendships
   has_many :posts
 
-  attr_accessible :email, :name, :password, :password_confirmation
+  # FIXME: Security and validations
 
   def add_friend(friend)
     raise ArgumentError unless friend
