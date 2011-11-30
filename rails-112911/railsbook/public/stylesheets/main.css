@@ -122,8 +122,16 @@ label {
 
 #messages {
   display: block;
-  margin: 0 auto;
-  background-color: lightyellow;
+  width: 980px;
+  margin: 1em auto;
+  text-align: center;
+}
+
+#notice {
+  background: #FCF9E8;
+  border-radius: 5px;
+  padding: 0.5em;
+  border: 1px solid #F7EEC3;
 }
 
 /************
