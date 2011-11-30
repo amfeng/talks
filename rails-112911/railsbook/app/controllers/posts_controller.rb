@@ -17,4 +17,16 @@ class PostsController < ApplicationController
     post.destroy if post
     redirect_back_or_default home_path
   end
+
+  def add_comment
+    # FIXME: Now You Try, write method for adding comments per post
+    # Remember that all of the database/object manipulations should be
+    # handled in the model - "fat model, skinny controller"
+  end
+
+  def delete_comment
+    # FIXME: Now You Try, write method for deleting comments per post
+    # Remember that all of the database/object manipulations should be
+    # handled in the model - "fat model, skinny controller"
+  end
 end
